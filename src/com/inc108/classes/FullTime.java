@@ -11,12 +11,42 @@ package com.inc108.classes;
  */
 public class FullTime extends Employee {
     
-    public FullTime(String name, Gender gender){
-        super(name, gender);
+    double salary;
+    double overtime;
+    
+    public FullTime(String name, Gender gender, double sal, double ot, Vehicle v){
+        super(name, gender, v);
+        this.salary = sal;
+        this.overtime = ot;
+    }
+    
+    public double getSalary(){
+        
+        return salary;
+    }
+    
+    public double getOvertime(){
+        
+        return overtime;
+    }
+    
+    public void setSalary(double s){
+        this.salary = s;
+    }
+    
+    public void setOvertime(double o){
+        this.overtime = o;
+    }
+    
+    @Override
+    public double calculatePay(){
+        System.out.println("Full Time Employee");
+        return this.salary + this.overtime;
     }
     
     @Override
     public String toString(){
         return super.toString() + "FullTime\n";
     }
+
 }

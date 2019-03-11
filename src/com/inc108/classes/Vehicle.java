@@ -24,6 +24,14 @@ public class Vehicle {
         this.plate = plate;
     }
     
+    public Vehicle(String plate, String color){
+        Vehicle.ID++;
+//        this.make = make;
+//        this.model = model;
+        this.color = color;
+        this.plate = plate;
+    }
+    
     public void setMake(String make){
         this.make = make;
     };
