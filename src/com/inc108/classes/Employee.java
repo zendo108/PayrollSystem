@@ -17,37 +17,39 @@ public abstract class Employee {
     public static int COUNT = 0;
     private int id;
     private String name;
-    private Gender gender;
-    private ArrayList<Vehicle> vehiclesList = new ArrayList<Vehicle>();
+    private Vehicle vehicle;
+//    private Gender gender;
+//    private ArrayList<Vehicle> vehiclesList = new ArrayList<Vehicle>();
     
     public Employee(){
         System.out.println("Inside Default Employee Constructor");
         this.id = 0;
         this.name = "";
-        this.gender = Gender.UNKNOWN;
+//        this.gender = Gender.UNKNOWN;
     }
     
-    public Employee(String name, Gender gender){
+    public Employee(int pEmpId, String name){
         System.out.println("Inside Non-Default Employee Constructor");
-        this.id = ++Employee.COUNT;
+        this.id = pEmpId;
         this.name = name;
-        this.gender = gender;
+//        this.gender = gender;
     }
     
-    public Employee(String name, Gender gender, Vehicle v){
+    public Employee(int pEmpId, String pName, Vehicle pV){
         System.out.println("Inside Non-Default Employee Constructor");
-        this.id = ++Employee.COUNT;
-        this.name = name;
-        this.gender = gender;
-        this.vehiclesList.add(v);
+        this.id = pEmpId;
+        this.name = pName;
+//        this.gender = gender;
+        this.vehicle = pV;
     }
     
-    public Employee(String name, Gender gender, String plate, String color){
+    public Employee(int pEmpId, String pName, String plate, String color){
         System.out.println("Inside Non-Default Employee Constructor");
-        this.id = ++Employee.COUNT;
-        this.name = name;
-        this.gender = gender;
-        this.vehiclesList.add(new Vehicle(plate,color));
+        this.id = pEmpId;
+        this.name = pName;
+        this.vehicle = new Vehicle(plate,color);
+//        this.gender = gender;
+//        this.vehiclesList.add(new Vehicle(plate,color));
     }
     
     public String getName(){
@@ -58,19 +60,6 @@ public abstract class Employee {
         return this.id;
     }
     
-    public Gender getGender(){
-        return this.gender;
-    }
-    
-    public ArrayList<Vehicle> getVehicles(){
-        /**
-         * My Vehicles method allows for more than one car
-         * per employee, you can drive one car one day and another one 
-         * another day
-         */
-        return this.vehiclesList;
-    }
-    
     public void setName(String name){
         this.name = name;
     }
@@ -79,8 +68,12 @@ public abstract class Employee {
         this.id = id;
     }
     
-    public void addVehicle(Vehicle v){
-        this.vehiclesList.add(v);
+    public void addVehicle(Vehicle pV){
+        this.vehicle = pV;
+    }
+    
+    public Vehicle getVehicle(){
+        return this.vehicle;
     }
     
     public abstract double calculatePay();
@@ -88,14 +81,11 @@ public abstract class Employee {
     
     @Override
     public String toString(){
-        String out = "ID: " + this.getID() + "\n" + "Gender: " + this.getGender() + "\n" + this.getName() + "\n";
+        String out = "ID: " + this.getID() + "\n" + "\n" + this.getName() + "\n";
 
-        if(this.getVehicles().size()>0){
+        if(this.vehicle!=null){
             out += "Vehicles\n";
-            out += "--------\n";
-            for(Vehicle v: this.getVehicles()){
-                out += v.toString()+"\n";
-            }
+            out += this.vehicle +"\n";
         }else{
         out += "No Vehicles\n";
         }

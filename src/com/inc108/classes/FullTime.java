@@ -14,10 +14,10 @@ public class FullTime extends Employee {
     double salary;
     double overtime;
     
-    public FullTime(String name, Gender gender, double sal, double ot, Vehicle v){
-        super(name, gender, v);
+    public FullTime(int id, String name, double sal, double hourAndHalf, Vehicle v){
+        super(id, name, v);
         this.salary = sal;
-        this.overtime = ot;
+        this.overtime = hourAndHalf;
     }
     
     public double getSalary(){
